@@ -1,14 +1,5 @@
-import React from 'react'
-import SkillCard from './SkillCard'
-import HTML from '../assets/html.png';
-import CSS from '../assets/css.png';
-import JavaScript from '../assets/javascript.png';
-import ReactImg from '../assets/react.png';
-import Node from '../assets/node.png';
-import FireBase from '../assets/firebase.png';
-import GitHub from '../assets/github.png';
-import Tailwind from '../assets/tailwind.png';
-
+import { data } from '../skills-data/data'
+import SkillCard from '../components/SkillCard'
 const Skills = () => {
     return (
         <section name='skills' className='w-full h-screen bg-primary text-gray-300'>
@@ -20,14 +11,9 @@ const Skills = () => {
                 </div>
 
                 <div className='w-full grid grid-cols-2 md:grid-cols-4 gap-4 text-center py-8'>
-                    <SkillCard title='HTML' img={HTML} />
-                    <SkillCard title='CSS' img={CSS} />
-                    <SkillCard title='JAVASCRIPT' img={JavaScript} />
-                    <SkillCard title='REACT' img={ReactImg} />
-                    <SkillCard title='GITHUB' img={GitHub} />
-                    <SkillCard title='NODE JS' img={Node} />
-                    <SkillCard title='TAILWIND' img={Tailwind} />
-                    <SkillCard title='FireBase' img={FireBase} />
+                    {data.map((item) => (
+                        <SkillCard key={item.id} title={item.title} img={item.img} />
+                    ))}
                 </div>
             </div>
         </section>

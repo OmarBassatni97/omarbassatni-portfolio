@@ -16,9 +16,9 @@ const Work = () => {
                 <div className="grid md:grid-cols-2 gap-4">
 
                     {/* Gird Item */}
-                    {data.map((item, index) => (
+                    {data.map((item) => (
                         <div
-                            key={index}
+                            key={item.id}
                             style={{ backgroundImage: `url(${item.img})` }}
                             className="shadow-lg shadow-[#040c16] group container rounded-md 
             flex justify-center text-center items-center mx-auto bg-no-repeat bg-center bg-cover h-[250px] content-div"
