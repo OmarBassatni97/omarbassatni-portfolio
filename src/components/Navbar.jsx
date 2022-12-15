@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
 import { BsFillPersonLinesFill } from 'react-icons/bs';
+import { Link } from 'react-scroll'
 const Navbar = () => {
     const [nav, setNav] = useState(false)
     return (
@@ -18,22 +19,22 @@ const Navbar = () => {
             </div>
             {/* menu */}
             <ul className='hidden md:flex'>
-                <li className='hover:text-secondary transition duration-300 font-bold'>Home</li>
-                <li className='hover:text-secondary transition duration-300 font-bold'>About</li>
-                <li className='hover:text-secondary transition duration-300 font-bold'>Skills</li>
-                <li className='hover:text-secondary transition duration-300 font-bold'>Work</li>
-                <li className='hover:text-secondary transition duration-300 font-bold'>Contact</li>
+                <li className='hover:text-secondary transition duration-300 font-bold'><Link to='home' smooth={true} duration={500}>Home</Link></li>
+                <li className='hover:text-secondary transition duration-300 font-bold'><Link to='about' smooth={true} duration={500}>About</Link></li>
+                <li className='hover:text-secondary transition duration-300 font-bold'><Link to='skills' smooth={true} duration={500}>Skills</Link></li>
+                <li className='hover:text-secondary transition duration-300 font-bold'><Link to='work' smooth={true} duration={500}>Work</Link></li>
+                <li className='hover:text-secondary transition duration-300 font-bold'><Link to='contact' smooth={true} duration={500}>Contact</Link></li>
             </ul>
             <div className='md:hidden z-10' onClick={() => { setNav(!nav) }}>
                 {nav ? <FaTimes /> : <FaBars />}
             </div>
             {/* mobile menu */}
             <ul className={`${nav ? 'absolute' : 'hidden'}  top-0 left-0 w-full h-screen flex flex-col justify-center items-center bg-primary`}>
-                <li className='py-6 text-4xl hover:text-secondary transition duration-300'>Home</li>
-                <li className='py-6 text-4xl hover:text-secondary transition duration-300'>About</li>
-                <li className='py-6 text-4xl hover:text-secondary transition duration-300'>Skills</li>
-                <li className='py-6 text-4xl hover:text-secondary transition duration-300'>Work</li>
-                <li className='py-6 text-4xl hover:text-secondary transition duration-300'>Contact</li>
+                <li className='py-6 text-4xl hover:text-secondary transition duration-300'><Link onClick={() => { setNav(!nav) }} to='home' smooth={true} duration={500}>Home</Link></li>
+                <li className='py-6 text-4xl hover:text-secondary transition duration-300'><Link onClick={() => { setNav(!nav) }} to='about' smooth={true} duration={500}>About</Link></li>
+                <li className='py-6 text-4xl hover:text-secondary transition duration-300'><Link onClick={() => { setNav(!nav) }} to='skills' smooth={true} duration={500}>Skills</Link></li>
+                <li className='py-6 text-4xl hover:text-secondary transition duration-300'><Link onClick={() => { setNav(!nav) }} to='work' smooth={true} duration={500}>Work</Link></li>
+                <li className='py-6 text-4xl hover:text-secondary transition duration-300'><Link onClick={() => { setNav(!nav) }} to='contact' smooth={true} duration={500}>Contact</Link></li>
             </ul>
 
             <div className='hidden lg:flex fixed flex-col top-[35%] left-0'>
