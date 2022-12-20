@@ -10,21 +10,45 @@ import {
 import { HiOutlineMail } from 'react-icons/hi'
 import { BsFillPersonLinesFill } from 'react-icons/bs';
 import { Link } from 'react-scroll'
+import { motion } from 'framer-motion'
 const Navbar = () => {
     const [nav, setNav] = useState(false)
     return (
         <div className='fixed w-full h-[80px] flex justify-between items-center px-4 bg-primary text-gray-300'>
-            <div>
+            <motion.div
+                initial=
+                {{
+                    opacity: 0,
+                    x: -500,
+                }}
+                animate={{
+                    opacity: 1,
+                    x: 0
+                }}
+                transition={{ duration: 2 }}
+            >
                 <img src={Logo} alt="logo" className='w-[80px]' />
-            </div>
+            </motion.div>
             {/* menu */}
-            <ul className='hidden md:flex'>
+            <motion.ul
+                className='hidden md:flex'
+                initial=
+                {{
+                    opacity: 0,
+                    x: 500,
+                }}
+                animate={{
+                    opacity: 1,
+                    x: 0
+                }}
+                transition={{ duration: 2 }}
+            >
                 <li className='hover:text-secondary transition duration-300 font-bold'><Link to='home' smooth={true} duration={500}>Home</Link></li>
                 <li className='hover:text-secondary transition duration-300 font-bold'><Link to='about' smooth={true} duration={500}>About</Link></li>
                 <li className='hover:text-secondary transition duration-300 font-bold'><Link to='skills' smooth={true} duration={500}>Skills</Link></li>
                 <li className='hover:text-secondary transition duration-300 font-bold'><Link to='work' smooth={true} duration={500}>Work</Link></li>
                 <li className='hover:text-secondary transition duration-300 font-bold'><Link to='contact' smooth={true} duration={500}>Contact</Link></li>
-            </ul>
+            </motion.ul>
             <div className='md:hidden z-10' onClick={() => { setNav(!nav) }}>
                 {nav ? <FaTimes /> : <FaBars />}
             </div>
