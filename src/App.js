@@ -7,7 +7,7 @@ import Work from "./components/Work";
 
 function App() {
   return (
-    <div className="h-screen overflow-scroll snap-y snap-mandatory">
+    <div >
       <Navbar />
       <Home />
       <About />

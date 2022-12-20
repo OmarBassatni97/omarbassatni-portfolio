@@ -4,7 +4,7 @@ const Skills = () => {
   return (
     <section
       name="skills"
-      className="w-full h-screen bg-primary text-gray-300 snap-center"
+      className="w-full h-screen bg-primary text-gray-300"
     >
       <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full">
         <div>
