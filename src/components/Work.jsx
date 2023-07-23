@@ -23,23 +23,26 @@ const Work = () => {
               key={item.id}
               style={{ backgroundImage: `url(${item.img})` }}
               className="shadow-lg my-2 sm:my-0 shadow-[#040c16] group container rounded-md 
-            flex justify-center text-center items-center mx-auto bg-no-repeat bg-center bg-cover h-[250px] content-div"
+            flex justify-center text-center items-center mx-auto bg-no-repeat bg-center bg-cover h-[250px] content-div "
             >
               {/* Hover effect for images */}
-              <div className="opacity-0 group-hover:opacity-100 ">
+              <div className="opacity-0 group-hover:opacity-100 duration-500">
                 <span className="text-2xl font bold text-white tracking-wider ">
                   {item.title}
                 </span>
                 <div className="pt-8 text-center ">
                   {/* eslint-disable-next-line */}
-                  <a href={item.github} target="_blank" rel="noreferrer">
-                    <button
-                      className="text-center rounded-lg px-4 py-3 m-2
+                  {item.github &&
+                    <a href={item.github} target="_blank" rel="noreferrer">
+                      <button
+                        className="text-center rounded-lg px-4 py-3 m-2
                      bg-white text-gray-700 font-bold text-lg hover:opacity-70 duration-300"
-                    >
-                      Code
-                    </button>
-                  </a>
+                      >
+                        Code
+                      </button>
+                    </a>
+                  }
+
                   {/* eslint-disable-next-line */}
                   <a href={item.live} target="_blank" rel="noreferrer">
                     <button
