@@ -1,5 +1,7 @@
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Experience from "./components/Experience";
+import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Skills from "./components/Skills";
@@ -16,18 +18,22 @@ function App() {
     restDelta: 0.001
   });
   return (
-    <div >
+    <>
       <motion.div
         className="fixed top-0 left-0 right-0 h-[10px] bg-secondary z-[1000] origin-top-left"
         style={{ scaleX }}
       />
       <Navbar />
-      <Home />
-      <About />
-      <Skills />
-      <Work />
-      <Contact />
-    </div>
+      <main>
+        <Home />
+        <About />
+        <Experience />
+        <Skills />
+        <Work />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   );
 }
 

@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from '../assets/logo.png'
-import Resume from '../assets/OmarBasatni_CV.pdf'
 import {
     FaBars,
     FaTimes,
@@ -9,13 +8,25 @@ import {
 } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
 import { BsFillPersonLinesFill } from 'react-icons/bs';
-import { Link } from 'react-scroll'
 import { motion } from 'framer-motion'
+import SocialLinks from './SocialLinks'
+import { EMAIL, GITHUB, LINKEDIN, RESUME, RESUME_FILENAME, sections } from '../links'
+
+const label = (section) => section.charAt(0).toUpperCase() + section.slice(1)
+
 const Navbar = () => {
     const [nav, setNav] = useState(false)
+
+    // Stop the page scrolling behind the open mobile menu
+    useEffect(() => {
+        document.body.style.overflow = nav ? 'hidden' : ''
+    }, [nav])
+
     return (
-        <div className='fixed w-full h-[80px] flex justify-between items-center px-4 bg-primary text-gray-300'>
-            <motion.div
+        <header className='fixed z-50 w-full h-[80px] flex justify-between items-center px-4 bg-primary text-gray-300'>
+            <motion.a
+                href='#home'
+                aria-label='Back to top'
                 initial=
                 {{
                     opacity: 0,
@@ -27,60 +38,71 @@ const Navbar = () => {
                 }}
                 transition={{ duration: 2 }}
             >
-                <img src={Logo} alt="logo" className='w-[80px]' />
-            </motion.div>
+                <img src={Logo} alt="Omar Bassatni logo" className='w-[80px]' />
+            </motion.a>
             {/* menu */}
-            <motion.ul
-                className='hidden md:flex'
-                initial=
-                {{
-                    opacity: 0,
-                    x: 500,
-                }}
-                animate={{
-                    opacity: 1,
-                    x: 0
-                }}
-                transition={{ duration: 2 }}
+            <nav aria-label='Main'>
+                <motion.ul
+                    className='hidden md:flex'
+                    initial=
+                    {{
+                        opacity: 0,
+                        x: 500,
+                    }}
+                    animate={{
+                        opacity: 1,
+                        x: 0
+                    }}
+                    transition={{ duration: 2 }}
+                >
+                    {sections.map((section) => (
+                        <li key={section} className='px-4'>
+                            <a href={`#${section}`} className='hover:text-secondary transition duration-300 font-bold'>{label(section)}</a>
+                        </li>
+                    ))}
+                </motion.ul>
+            </nav>
+            <button
+                type='button'
+                className='md:hidden z-10 p-2'
+                onClick={() => { setNav(!nav) }}
+                aria-label={nav ? 'Close menu' : 'Open menu'}
+                aria-expanded={nav}
+                aria-controls='mobile-menu'
             >
-                <li className='hover:text-secondary transition duration-300 font-bold'><Link to='home' smooth={true} duration={500}>Home</Link></li>
-                <li className='hover:text-secondary transition duration-300 font-bold'><Link to='about' smooth={true} duration={500}>About</Link></li>
-                <li className='hover:text-secondary transition duration-300 font-bold'><Link to='skills' smooth={true} duration={500}>Skills</Link></li>
-                <li className='hover:text-secondary transition duration-300 font-bold'><Link to='work' smooth={true} duration={500}>Work</Link></li>
-                <li className='hover:text-secondary transition duration-300 font-bold'><Link to='contact' smooth={true} duration={500}>Contact</Link></li>
-            </motion.ul>
-            <div className='md:hidden z-10' onClick={() => { setNav(!nav) }}>
-                {nav ? <FaTimes /> : <FaBars />}
-            </div>
+                {nav ? <FaTimes size={22} /> : <FaBars size={22} />}
+            </button>
             {/* mobile menu */}
-            <ul className={`${nav ? 'absolute' : 'hidden'}  top-0 left-0 w-full h-screen flex flex-col justify-center items-center bg-primary`}>
-                <li className='py-6 text-4xl hover:text-secondary transition duration-300'><Link onClick={() => { setNav(!nav) }} to='home' smooth={true} duration={500}>Home</Link></li>
-                <li className='py-6 text-4xl hover:text-secondary transition duration-300'><Link onClick={() => { setNav(!nav) }} to='about' smooth={true} duration={500}>About</Link></li>
-                <li className='py-6 text-4xl hover:text-secondary transition duration-300'><Link onClick={() => { setNav(!nav) }} to='skills' smooth={true} duration={500}>Skills</Link></li>
-                <li className='py-6 text-4xl hover:text-secondary transition duration-300'><Link onClick={() => { setNav(!nav) }} to='work' smooth={true} duration={500}>Work</Link></li>
-                <li className='py-6 text-4xl hover:text-secondary transition duration-300'><Link onClick={() => { setNav(!nav) }} to='contact' smooth={true} duration={500}>Contact</Link></li>
-            </ul>
+            <div id='mobile-menu' className={`${nav ? 'flex' : 'hidden'} md:hidden absolute top-0 left-0 w-full h-screen flex-col justify-center items-center bg-primary`}>
+                <ul className='flex flex-col items-center'>
+                    {sections.map((section) => (
+                        <li key={section} className='py-4'>
+                            <a onClick={() => { setNav(false) }} href={`#${section}`} className='text-4xl hover:text-secondary transition duration-300'>{label(section)}</a>
+                        </li>
+                    ))}
+                </ul>
+                <SocialLinks className='pt-8' />
+            </div>
 
             <div className='hidden lg:flex fixed flex-col top-[35%] left-0'>
                 <ul>
-                    <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-blue-600'>
-                        <a href="https://www.linkedin.com/in/omar-bassatni-40a762188/" target='_blank' rel='noreferrer' className='flex justify-between items-center w-full'>Linkedin <FaLinkedin size={30} /></a>
+                    <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] focus-within:ml-[-10px] duration-300 bg-blue-600 px-4'>
+                        <a href={LINKEDIN} target='_blank' rel='noreferrer' className='flex justify-between items-center w-full'>Linkedin <FaLinkedin size={30} /></a>
                     </li>
-                    <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#333333]'>
-                        <a href="https://github.com/OmarBassatni97" target='_blank' rel='noreferrer' className='flex justify-between items-center w-full'>Github <FaGithub size={30} /></a>
+                    <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] focus-within:ml-[-10px] duration-300 bg-[#333333] px-4'>
+                        <a href={GITHUB} target='_blank' rel='noreferrer' className='flex justify-between items-center w-full'>Github <FaGithub size={30} /></a>
                     </li>
-                    <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#6fc2b0]'>
-                        <a href='mailto:omarbassatni@gmail.com' className='flex justify-between items-center w-full text-gray-300'>
+                    <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] focus-within:ml-[-10px] duration-300 bg-[#6fc2b0] px-4'>
+                        <a href={`mailto:${EMAIL}`} className='flex justify-between items-center w-full text-gray-300'>
                             Email <HiOutlineMail size={30} />
                         </a>
                     </li>
-                    <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#565f69]'>
-                        <a href={Resume} download className='flex justify-between items-center w-full'>Resume <BsFillPersonLinesFill size={30} /></a>
+                    <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] focus-within:ml-[-10px] duration-300 bg-[#565f69] px-4'>
+                        <a href={RESUME} download={RESUME_FILENAME} className='flex justify-between items-center w-full'>Resume <BsFillPersonLinesFill size={30} /></a>
                     </li>
                 </ul>
-
             </div>
-        </div>
+        </header>
     )
 }
 
