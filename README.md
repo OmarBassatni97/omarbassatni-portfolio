@@ -2,7 +2,7 @@
 
 Personal portfolio of **Omar Bassatni**, a Frontend Developer specializing in React.js and Next.js, based in Beirut, Lebanon.
 
-**Live site:** [omar-bassatni.netlify.app](https://omar-bassatni.netlify.app/)
+**Live site:** [omarbassatni.com](https://www.omarbassatni.com/)
 
 ![Portfolio preview](public/og-image.png)
 

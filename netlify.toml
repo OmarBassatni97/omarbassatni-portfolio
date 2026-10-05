@@ -4,3 +4,10 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# The site now lives on Vercel at omarbassatni.com; send old links there
+[[redirects]]
+  from = "/*"
+  to = "https://www.omarbassatni.com/:splat"
+  status = 301
+  force = true
