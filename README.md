@@ -17,7 +17,8 @@ Personal portfolio of **Omar Bassatni**, a Frontend Developer specializing in Re
 
 ## Tech stack
 
-- React 18
+- Next.js 16 (App Router, static export)
+- React 19 and TypeScript
 - Tailwind CSS
 - Framer Motion (navbar animation and scroll progress bar)
 - React Icons
@@ -26,23 +27,29 @@ Personal portfolio of **Omar Bassatni**, a Frontend Developer specializing in Re
 
 ```bash
 npm install
-npm start       # development server at http://localhost:3000
-npm run build   # production build in /build
+npm run dev        # development server at http://localhost:3000
+npm run build      # static export to /out
+npm start          # serve the built /out folder locally
+npm run typecheck  # TypeScript check
 ```
+
+## Deployment
+
+The site is exported as static files (`output: 'export'` in `next.config.ts`), so it can be hosted anywhere. [netlify.toml](netlify.toml) sets the Netlify build command and the `out` publish folder. Vercel detects the setup automatically.
 
 ## Project structure
 
 ```
 src/
-  components/        # one component per section, plus shared pieces (SocialLinks, Footer)
-  experience-data/   # work experience entries
-  project-data/      # case study and project entries
-  skills-data/       # skills list
-  links.js           # email, social links, and resume file
-  assets/            # images and resume PDF
+  app/          # layout (metadata, fonts), page, manifest, global styles
+  components/   # one component per section, plus shared pieces (SocialLinks, Footer)
+  data/         # experience, projects, and skills content
+  lib/          # site links and the typewriter hook
+  assets/       # images
+public/         # resume PDF, social preview image, icons
 ```
 
-Content lives in the `*-data` files, so updating the portfolio usually means editing data rather than components.
+Content lives in `src/data`, so updating the portfolio usually means editing data rather than components. Site-wide links (email, socials, resume, site URL) are in `src/lib/links.ts`.
 
 ## Contact
 
