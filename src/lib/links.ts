@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://omar-bassatni.netlify.app'
+export const SITE_URL = 'https://www.omarbassatni.com'
 
 export const EMAIL = 'omarbassatni@gmail.com'
 export const RESUME = '/Omar_Bassatni_Resume_2026.pdf'
